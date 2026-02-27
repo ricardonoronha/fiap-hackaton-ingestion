@@ -15,7 +15,6 @@ spec:
     metadata:
       labels:
         app: ingestion-api
-        note-image-name: "#{ImageName}#"
     spec:
       containers:
         - name: ingestion-api
