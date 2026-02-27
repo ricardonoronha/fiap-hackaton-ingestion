@@ -24,7 +24,8 @@ jobs:
         env:
           ImageName: ingestion-api:${{ github.run_number }}
           InfluxToken: ${{ secrets.INFLUXDB_TOKEN }}
-          RabbitmqConnectionString: ${{ secrets.RABBITMQ_CONNECTION_STRING }}
+          RabbitMqUser: ${{ secrets.RABBITMQ_USER }}
+          RabbitMqPassword: ${{ secrets.RABBITMQ_PASS }}
           JwtIssuer: ${{ secrets.JWT_ISSUER }}
           JwtAudience: ${{ secrets.JWT_AUDIENCE }}
           JwtKey: ${{ secrets.JWT_KEY }}
