@@ -18,13 +18,11 @@ spec:
     spec:
       containers:
         - name: ingestion-api
-          image: hashicorp/http-echo:latest
-          args:
-            - "-text=pong"
+          image: #{ImageName}#
           imagePullPolicy: Always
           ports:
             - name: http
-              containerPort: 5678
+              containerPort: 8080
 
           envFrom:
             - configMapRef:
@@ -79,8 +77,8 @@ spec:
 
           readinessProbe:
             httpGet:
-              path: /
-              port: 5678
+              path: /healthz
+              port: http
             initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 2
@@ -88,8 +86,8 @@ spec:
           
           livenessProbe:
             httpGet:
-              path: /
-              port: 5678
+              path: /healthz
+              port: http
             initialDelaySeconds: 20
             periodSeconds: 15
             timeoutSeconds: 2

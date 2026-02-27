@@ -4,13 +4,16 @@ using System.Text;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHealthChecks();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IInfluxDBClient>(_ =>
 {
-    var url = Environment.GetEnvironmentVariable("INFLUX_URL")!;
-    var token = Environment.GetEnvironmentVariable("INFLUX_TOKEN")!;
+    var url = Environment.GetEnvironmentVariable("INFLUX_URL") ?? string.Empty;
+    var token = Environment.GetEnvironmentVariable("INFLUX_TOKEN") ?? string.Empty;
     return new InfluxDBClient(url, token);
 });
 
@@ -18,9 +21,9 @@ var queueName = Environment.GetEnvironmentVariable("RABBITMQ_QUEUE") ?? "sensor_
 
 builder.Services.AddSingleton(_ =>
 {
-    var rabbitHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "rabbitmq";
-    var rabbitUser = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? "admin";
-    var rabbitPass = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? "admin";
+    var rabbitHost = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? string.Empty;
+    var rabbitUser = Environment.GetEnvironmentVariable("RABBITMQ_USER") ?? string.Empty;
+    var rabbitPass = Environment.GetEnvironmentVariable("RABBITMQ_PASS") ?? string.Empty;
 
     return new ConnectionFactory
     {
@@ -33,6 +36,9 @@ builder.Services.AddSingleton(_ =>
 builder.Services.AddHostedService<IngestionWorker>();
 
 var app = builder.Build();
+
+app.MapHealthChecks("/healthz");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
