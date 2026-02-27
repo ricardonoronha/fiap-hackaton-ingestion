@@ -108,7 +108,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 5678
+      targetPort: 8080
 
 ---
 apiVersion: autoscaling/v2
