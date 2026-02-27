@@ -6,9 +6,10 @@ metadata:
 data:
 
   ASPNETCORE_ENVIRONMENT: "Production"
-
-  InfluxDbSettings__Url: "http://influxdb-influxdb2.observability:8086"
-  InfluxDbSettings__Org: "influxdata"
-  InfluxDbSettings__Bucket: "default"
-  
+  RABBITMQ_QUEUE: "sensor_readings"
+  INFLUX_URL: "http://influxdb-influxdb2.observability:8086"
+  INFLUX_BUCKET: "default"
+  INFLUX_ORG: "influxdata"
+  INFLUX_MEASUREMENT: "sensor_reading"
+  RABBITMQ_HOST: "rabbitmq.messaging"
   

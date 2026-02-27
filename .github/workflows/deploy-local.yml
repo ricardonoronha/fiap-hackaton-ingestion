@@ -23,7 +23,7 @@ jobs:
             ["${{ env.K8S_DIR }}/**/*.yml","${{ env.K8S_DIR }}/**/*.yaml"]
         env:
           ImageName: ingestion-api:${{ github.run_number }}
-          InfluxDBToken: ${{ secrets.INFLUXDB_TOKEN }}
+          InfluxToken: ${{ secrets.INFLUXDB_TOKEN }}
           RabbitmqConnectionString: ${{ secrets.RABBITMQ_CONNECTION_STRING }}
           JwtIssuer: ${{ secrets.JWT_ISSUER }}
           JwtAudience: ${{ secrets.JWT_AUDIENCE }}
