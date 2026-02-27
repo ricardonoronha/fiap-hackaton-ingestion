@@ -5,8 +5,8 @@ WORKDIR /src
 COPY . .
 
 # publica o projeto certo (não a solução)
-RUN dotnet restore ./AgroSolution.SensorIngestion.API.csproj
-RUN dotnet publish ./AgroSolution.SensorIngestion.API.csproj -c Release -o /app/publish --no-restore
+RUN dotnet restore src/AgroSolution.SensorIngestion.API/AgroSolution.SensorIngestion.API.csproj
+RUN dotnet publish src/AgroSolution.SensorIngestion.API/AgroSolution.SensorIngestion.API.csproj -c Release -o /app/publish --no-restore
 
 # runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0

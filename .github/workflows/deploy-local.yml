@@ -11,18 +11,37 @@ jobs:
 
     env:
       K8S_DIR: k8s
+      IMAGE_NAME: ingestion-api
+      RUN_TAG: ${{ github.run_number }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Build Docker image (API.Dockerfile)
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build \
+            -f docker/API.Dockerfile \
+            -t "${IMAGE_NAME}:${RUN_TAG}" \
+            -t "${IMAGE_NAME}:latest" \
+            .
 
+      - name: Load image into kind cluster
+        shell: bash
+        run: |
+          set -euo pipefail
+          kind load docker-image "${IMAGE_NAME}:${RUN_TAG}" --name rn-local-lab
+          kind load docker-image "${IMAGE_NAME}:latest" --name rn-local-lab
+          
       - name: Replace tokens in manifests
         uses: cschleiden/replace-tokens@v1
         with:
           files: |
             ["${{ env.K8S_DIR }}/**/*.yml","${{ env.K8S_DIR }}/**/*.yaml"]
         env:
-          ImageName: ingestion-api:${{ github.run_number }}
+          ImageName: ${{ env.IMAGE_NAME }}:${{ env.RUN_TAG }}
           InfluxToken: ${{ secrets.INFLUXDB_TOKEN }}
           RabbitMqUser: ${{ secrets.RABBITMQ_USER }}
           RabbitMqPassword: ${{ secrets.RABBITMQ_PASS }}

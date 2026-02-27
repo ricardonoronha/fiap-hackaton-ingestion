@@ -32,31 +32,37 @@ spec:
 
           env:
             
-            - name: InfluxDbSettings__Token
+            - name: INFLUX_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: ingestion-secret
-                  key: INFLUXDB_TOKEN
+                  key: INFLUX_TOKEN
 
-            - name: ConnectionStrings__RabbitMq
+            - name: RABBITMQ_USER
               valueFrom:
                 secretKeyRef:
                   name: ingestion-secret
-                  key: RABBITMQ_CONNECTION_STRING
+                  key: RABBITMQ_USER
+
+            - name: RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: ingestion-secret
+                  key: RABBITMQ_PASS
       
-            - name: JwtSettings__Issuer
+            - name: JWT_ISSUER
               valueFrom:
                 secretKeyRef:
                   name: ingestion-secret
                   key: JWT_ISSUER
 
-            - name: JwtSettings__Audience
+            - name: JWT_AUDIENCE
               valueFrom:
                 secretKeyRef:
                   name: ingestion-secret
                   key: JWT_AUDIENCE
 
-            - name: JwtSettings__Key
+            - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: ingestion-secret
