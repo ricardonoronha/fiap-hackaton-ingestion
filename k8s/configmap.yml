@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingestion-config
+  namespace: agrosolutions-ingestion
+data:
+
+  ASPNETCORE_ENVIRONMENT: "Production"
+
+  InfluxDbSettings__Url: "http://influxdb-influxdb2.observability:8086"
+  InfluxDbSettings__Org: "influxdata"
+  InfluxDbSettings__Bucket: "default"
+  
+  
