@@ -136,7 +136,10 @@ public sealed class IngestionWorker : BackgroundService
         var point = PointData
             .Measurement(_measurement)
             .Tag("fieldId", reading.FieldId)
+            .Tag("culture", reading.Culture)
+            .Tag("farmerId", reading.FarmerId)
             .Tag("sensorType", reading.SensorType)
+            .Tag("sensorUnit", reading.SensorUnit)
             .Field("value", reading.Value)
             .Timestamp(reading.Timestamp.GetValueOrDefault(), WritePrecision.Ns);
 

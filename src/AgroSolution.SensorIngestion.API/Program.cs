@@ -78,7 +78,10 @@ app.Run();
 
 record SensorReading(
     string FieldId,
+    string Culture,
+    string FarmerId,
     string SensorType,
-    int Value,
+    string SensorUnit,
+    double Value,
     DateTime? Timestamp
 );
