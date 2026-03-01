@@ -43,7 +43,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 
-app.MapPost("/readings", async (SensorReading reading, ConnectionFactory factory) =>
+app.MapPost("/api/readings", async (SensorReading reading, ConnectionFactory factory) =>
 {
     // validação mínima
     if (string.IsNullOrWhiteSpace(reading.FieldId)) return Results.BadRequest("fieldId required");
