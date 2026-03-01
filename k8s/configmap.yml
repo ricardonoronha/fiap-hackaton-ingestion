@@ -7,7 +7,7 @@ data:
 
   ASPNETCORE_ENVIRONMENT: "Production"
   RABBITMQ_QUEUE: "sensor_readings"
-  INFLUX_URL: "http://influxdb-influxdb2.observability:8086"
+  INFLUX_URL: "http://influxdb-influxdb2.observability:80"
   INFLUX_BUCKET: "default"
   INFLUX_ORG: "influxdata"
   INFLUX_MEASUREMENT: "sensor_readings"
