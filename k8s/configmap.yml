@@ -10,6 +10,6 @@ data:
   INFLUX_URL: "http://influxdb-influxdb2.observability:8086"
   INFLUX_BUCKET: "default"
   INFLUX_ORG: "influxdata"
-  INFLUX_MEASUREMENT: "sensor_reading"
+  INFLUX_MEASUREMENT: "sensor_readings"
   RABBITMQ_HOST: "rabbitmq.messaging"
   
