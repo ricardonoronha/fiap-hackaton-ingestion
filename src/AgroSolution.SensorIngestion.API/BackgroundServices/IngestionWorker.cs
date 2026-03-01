@@ -20,7 +20,7 @@ public sealed class IngestionWorker : BackgroundService
     private readonly IInfluxDBClient _influx;
     private readonly string _bucket = Environment.GetEnvironmentVariable("INFLUX_BUCKET") ?? "default";
     private readonly string _org = Environment.GetEnvironmentVariable("INFLUX_ORG") ?? "influxdata";
-    private readonly string _measurement = Environment.GetEnvironmentVariable("INFLUX_MEASUREMENT") ?? "sensor_reading";
+    private readonly string _measurement = Environment.GetEnvironmentVariable("INFLUX_MEASUREMENT") ?? "sensor_readings";
 
     public IngestionWorker(
     ILogger<IngestionWorker> logger,
