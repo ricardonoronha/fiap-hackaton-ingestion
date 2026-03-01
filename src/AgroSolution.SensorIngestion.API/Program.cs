@@ -33,7 +33,7 @@ builder.Services.AddSingleton(_ =>
     };
 });
 
-builder.Services.AddHostedService<IngestionWorker>();
+// builder.Services.AddHostedService<IngestionWorker>();
 
 var app = builder.Build();
 
