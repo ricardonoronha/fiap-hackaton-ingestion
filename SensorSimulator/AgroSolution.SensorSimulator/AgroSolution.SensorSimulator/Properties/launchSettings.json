@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AgroSolution.SensorSimulator": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
