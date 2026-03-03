@@ -85,3 +85,5 @@ record SensorReading(
     double Value,
     DateTime? Timestamp
 );
+
+// teste ci/cd
